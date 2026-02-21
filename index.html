@@ -26,6 +26,7 @@
 
       --color-green-btn: #10B981;
       --color-red-btn: #EF4444;
+      --color-disabled-btn: #EEF4FF;
     }
   </style>
 
@@ -89,29 +90,29 @@
       <!-- Job cards -->
       <div>
         <!-- card 1 -->
-        <div class="bg-secondary-bg rounded-lg space-y-5 p-6">
+        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >Mobile First Corp</h2>
               <p class="text-gray-text">React Native Developer</p>
             </div>
-            <div>
-              <img class="cursor-pointer" src="icons/bin-icon.png" alt="Delet icon">
+            <div class="rounded-full border border-red-400">
+              <img class="cursor-pointer w-[40px]" src="icons/bin-icon.png" alt="Delet icon">
             </div>
           </div>
 
-          <p>Remote • Full-time • $130,000 - $175,000</p>
+          <p class="text-gray-text text-[14px]">Remote • Full-time • $130,000 - $175,000</p>
 
-          <div>
-            <div>
-              <p>Not Applied</p>
+          <div class="space-y-2">
+            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
             </div>
-            <p>Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            <p class="text-[14px] text-darkGray-text ">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
           </div>
 
-          <div>
-            <button>interview</button>
-            <button>Rejected</button>
+          <div class="space-x-2">
+            <button class="btn border-green-btn text-green-btn bg-secondary-bg hover:bg-green-btn hover:text-secondary-bg active:scale-98 uppercase">interview</button>
+            <button class="btn border-red-btn text-red-btn bg-secondary-bg hover:bg-red-btn hover:text-secondary-bg active:scale-98 uppercase">Rejected</button>
           </div>
           
         </div>
