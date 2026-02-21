@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,32 +14,61 @@
   <!-- DaisyUI + tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-primary-bg: #F8FAFC;
+      --color-secondary-bg: #FFFFFF;
+      --color-bg-border: #F1F2F4;
+      
+      --color-primary-text: #002C5C;
+      --color-gray-text: #64748B;
+      --color-darkGray-text: #323B49;
+
+      --color-green-btn: #10B981;
+      --color-red-btn: #EF4444;
+    }
+  </style>
 
   <!-- Geist font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      background-color: #F8FAFC;
+    }
+
+    body {
+      font-family: "Geist", sans-serif;
+    }
+  </style>
 </head>
-<body>
+
+<body class="bg-primary-bg max-w-[1600px] mx-auto">
   <header>
-    <nav>
-      <h1>Job Application Tracker</h1>
-      <div>
-        <div>
-          <p>Total</p>
-          <p id="total-jobs">8</p>
+    <nav class="border-b-2 border-[#E6E7E9] pt-10 pb-5 px-5 space-y-5">
+      <h1 class="text-primary-text text-4xl font-bold">Job Application Tracker</h1>
+      <div class="text-darkGray-text grid grid-cols-3 gap-4">
+        <div class="bg-secondary-bg border border-bg-border rounded-lg p-5 ">
+          <p class="font-medium ">Total</p>
+          <p id="total-jobs" class="text-primary-text font-bold text-2xl">8</p>
         </div>
-        <div>
-          <p>Interview</p>
-          <p id="Interview-jobs">8</p>
+
+        <div class="bg-secondary-bg border border-bg-border rounded-lg p-5 ">
+          <p class="font-medium ">Interview</p>
+          <p id="total-jobs" class="text-green-btn font-bold text-2xl">0</p>
         </div>
-        <div>
-          <p>Rejected</p>
-          <p id="Rejected-jobs">8</p>
+
+        <div class="bg-secondary-bg border border-bg-border rounded-lg p-5 ">
+          <p class="font-medium ">Rejected</p>
+          <p id="total-jobs" class="text-red-btn font-bold text-2xl">0</p>
         </div>
+
       </div>
     </nav>
   </header>
   <script src="Scripts/main.js"></script>
 </body>
+
 </html>
