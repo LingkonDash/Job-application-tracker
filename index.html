@@ -43,6 +43,14 @@
     body {
       font-family: "Geist", sans-serif;
     }
+    .interviewCard {
+      background-color: #10B981;
+      color: white;
+    }
+    .rejectCard {
+      background-color: #EF4444;
+      color: white;
+    }
   </style>
 </head>
 
@@ -72,27 +80,28 @@
 
       </div>
     </nav>
-  </header>
-  <main>
+
     <!-- Top section -->
     <section class="pt-10 pb-5 px-5 space-y-5">
       <div class="flex justify-between items-center">
         <h2 class="text-primary-text text-xl font-semibold">Available Jobs</h2>
         <p class="font-medium text-gray-text"><span id="jobs">8</span> jobs</p>
       </div>
-
+  
       <!-- toggle buttons -->
       <div class="flex justify-start gap-2 items-center">
         <button onclick="showOnly('all-list', 'all-section')" id="all-list" class="btn btn-primary w-24">All</button>
         <button onclick="showOnly('interview-list', 'interview-section')" id="interview-list" class="btn w-24">Interview</button>
         <button onclick="showOnly('reject-list', 'reject-section')" id="reject-list" class="btn w-24">Rejected</button>
       </div>
-
+  
     </section>
+  </header>
+  <main id="main-container">
     <!-- Job cards -->
     <section id="all-section" class="p-5 space-y-5">
         <!-- card 1 -->
-        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
+        <div class="main-card bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >Mobile First Corp</h2>
@@ -106,20 +115,20 @@
           <p class="text-gray-text text-[14px]">Remote • Full-time • $130,000 - $175,000</p>
 
           <div class="space-y-2">
-            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
-              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
+            <div class="aplly-btn border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px]">Not Applied</p>
             </div>
             <p class="text-[14px] text-darkGray-text ">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
           </div>
 
           <div class="space-x-2">
-            <button id="interview-btn" class="btn border-green-btn text-green-btn bg-secondary-bg hover:bg-green-btn hover:text-secondary-bg active:scale-98 uppercase">interview</button>
-            <button id="reject-btn" class="btn border-red-btn text-red-btn bg-secondary-bg hover:bg-red-btn hover:text-secondary-bg active:scale-98 uppercase">Rejected</button>
+            <button class="btn border-green-btn text-green-btn bg-secondary-bg hover:bg-green-btn hover:text-secondary-bg active:scale-98 uppercase">interview</button>
+            <button class="btn border-red-btn text-red-btn bg-secondary-bg hover:bg-red-btn hover:text-secondary-bg active:scale-98 uppercase">Rejected</button>
           </div>
         </div>
 
         <!-- card 2 -->
-        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
+        <div class=" main-card bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >WebFlow Agency</h2>
@@ -133,8 +142,8 @@
           <p class="text-gray-text text-[14px]">Los Angeles, CA • Part-time • $80,000 - $120,000</p>
 
           <div class="space-y-2">
-            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
-              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
+            <div class="aplly-btn border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px]">Not Applied</p>
             </div>
             <p class="text-[14px] text-darkGray-text ">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
           </div>
@@ -146,7 +155,7 @@
         </div>
 
         <!-- card 3 -->
-        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
+        <div class=" main-card bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >DataViz Solutions</h2>
@@ -160,8 +169,8 @@
           <p class="text-gray-text text-[14px]">Boston, MA • Full-time • $125,000 - $165,000</p>
 
           <div class="space-y-2">
-            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
-              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
+            <div class="aplly-btn border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px]">Not Applied</p>
             </div>
             <p class="text-[14px] text-darkGray-text ">Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.</p>
           </div>
@@ -173,7 +182,7 @@
         </div>
 
         <!-- card 4 -->
-        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
+        <div class=" main-card bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >CloudFirst Inc</h2>
@@ -187,8 +196,8 @@
           <p class="text-gray-text text-[14px]">Seattle, WA • Full-time • $140,000 - $190,000</p>
 
           <div class="space-y-2">
-            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
-              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
+            <div class="aplly-btn border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px]">Not Applied</p>
             </div>
             <p class="text-[14px] text-darkGray-text ">Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.</p>
           </div>
@@ -200,7 +209,7 @@
         </div>
 
         <!-- card 5 -->
-        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
+        <div class=" main-card bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >Innovation Labs</h2>
@@ -214,8 +223,8 @@
           <p class="text-gray-text text-[14px]">Austin, TX • Full-time • $110,000 - $150,000</p>
 
           <div class="space-y-2">
-            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
-              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
+            <div class="aplly-btn border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px]">Not Applied</p>
             </div>
             <p class="text-[14px] text-darkGray-text ">Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.</p>
           </div>
@@ -227,7 +236,7 @@
         </div>
 
         <!-- card 6 -->
-        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
+        <div class=" main-card bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >MegaCorp Solutions</h2>
@@ -241,8 +250,8 @@
           <p class="text-gray-text text-[14px]">New York, NY • Full-time • $130,000 - $170,00</p>
 
           <div class="space-y-2">
-            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
-              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
+            <div class="aplly-btn border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px]">Not Applied</p>
             </div>
             <p class="text-[14px] text-darkGray-text ">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
           </div>
@@ -254,7 +263,7 @@
         </div>
 
         <!-- card 7 -->
-        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
+        <div class=" main-card bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >StartupXYZ</h2>
@@ -268,8 +277,8 @@
           <p class="text-gray-text text-[14px]">Remote • Full-time • $120,000 - $160,000</p>
 
           <div class="space-y-2">
-            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
-              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
+            <div class="aplly-btn border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px]">Not Applied</p>
             </div>
             <p class="text-[14px] text-darkGray-text ">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
           </div>
@@ -281,7 +290,7 @@
         </div>
 
         <!-- card 8 -->
-        <div class="bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
+        <div class=" main-card bg-secondary-bg border-2 border-bg-border rounded-lg space-y-5 p-4 md:p-6">
           <div class="flex justify-between items-center">
             <div>
               <h2 class="text-primary-text text-[18px] font-semibold" >TechCorp Industries</h2>
@@ -295,8 +304,8 @@
           <p class="text-gray-text text-[14px]">San Francisco, CA • Full-time • $130,000 - $175,000</p>
 
           <div class="space-y-2">
-            <div class="bg-disabled-btn w-max px-3 py-2 rounded">
-              <p class="uppercase font-medium text-[14px] text-primary-text">Not Applied</p>
+            <div class="aplly-btn border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="uppercase font-medium text-[14px]">Not Applied</p>
             </div>
             <p class="text-[14px] text-darkGray-text ">We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
           </div>

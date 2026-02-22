@@ -2,6 +2,23 @@ const totalJob = document.getElementById('total-job');
 const interviewJOb = document.getElementById('interview-job');
 const rejectJob = document.getElementById('reject-job');
 
+const mainContainer = document.getElementById('main-container');
+
+mainContainer.addEventListener('click', (e) => {
+  
+  if (e.target.innerText === 'INTERVIEW') {
+    e.target.closest('.main-card').querySelector('.aplly-btn').classList.remove('rejectCard')
+    e.target.closest('.main-card').querySelector('.aplly-btn').classList.add('interviewCard')
+    e.target.closest('.main-card').querySelector('.aplly-btn p').innerText = 'interview'
+  } 
+  
+  if (e.target.innerText === 'REJECTED') {
+    e.target.closest('.main-card').querySelector('.aplly-btn').classList.remove('interviewCard')
+    e.target.closest('.main-card').querySelector('.aplly-btn').classList.add('rejectCard')
+    e.target.closest('.main-card').querySelector('.aplly-btn p').innerText = 'rejected'
+  }
+})
+
 // This function updates data inside total box, interview box and reject box
 function totalRender() {
   totalJob.innerText = document.getElementById('all-section').children.length;
@@ -36,10 +53,3 @@ function showOnly(btnid, sectionId) {
   
 }
 
-const allSec = document.getElementById('all-section');
-const interviewSec = document.getElementById('interview-section');
-const rejectSec = document.getElementById('reject-section');
-
-allSec.addEventListener('click', (e) => {
-  
-})
