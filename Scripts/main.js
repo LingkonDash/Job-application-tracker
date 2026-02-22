@@ -1,3 +1,6 @@
+let interviewItems = [];
+let rejectItems = [];
+
 // main Sections capturing with variables
 const allSection = document.getElementById('all-section');
 const interviewSection = document.getElementById('interview-section');
@@ -8,6 +11,16 @@ const mainContainer = document.getElementById('main-container');
 mainContainer.addEventListener('click', (e) => {
   const mainParent = e.target.closest('.main-card')
 
+  // Object items 
+  const companyName = mainParent.querySelector('.company-name').innerText;
+  const postName = mainParent.querySelector('.post-name').innerText;
+  const jobType = mainParent.querySelector('.job-type').innerText;
+  const workDetails = mainParent.querySelector('.work-details').innerText;
+
+  const currentDiv = {
+    companyName, postName, jobType, workDetails
+  }
+
   if (e.target.classList.contains('interview-btn')) {
 
     // status changing 
@@ -15,22 +28,138 @@ mainContainer.addEventListener('click', (e) => {
     mainParent.querySelector('.aplly-btn').classList.add('interviewCard')
     mainParent.querySelector('.aplly-btn p').innerText = 'interview'  
     
-    // Interview Section Update
+    currentDiv.currentStatus = mainParent.querySelector('.current-status').innerText;
+    // Interview item check 
+    let counter = 0;
 
+    interviewItems.forEach(item => {
+      if((item.companyName === currentDiv.companyName)){
+        counter++
+      } 
+    })
+
+    const checkText = mainParent.querySelector('.company-name').innerText
+
+    rejectItems.forEach(item => {
+      if(item.companyName === checkText) {
+        rejectItems = rejectItems.filter(x => x !== item);
+      }
+    })
     
+
+    if(counter === 0) interviewItems.push(currentDiv)
+
+    else counter = 0;
+    
+    // Interview Section Update
+    sectionRender();
     totalRender();
   } 
   
   if (e.target.classList.contains('rejected-btn')) {
 
+    // status changing 
     mainParent.querySelector('.aplly-btn').classList.remove('interviewCard')
     mainParent.querySelector('.aplly-btn').classList.add('rejectCard')
     mainParent.querySelector('.aplly-btn p').innerText = 'rejected'
 
+    currentDiv.currentStatus = mainParent.querySelector('.current-status').innerText;
+     // Reject item check 
+    let rejectCounter = 0;
+    rejectItems.forEach(item => {
+      if((item.companyName === currentDiv.companyName)){
+        rejectCounter++
+      }
+    })
+
+    const checkText = mainParent.querySelector('.company-name').innerText
+
+    interviewItems.forEach(item => {
+      if(item.companyName === checkText) {
+        interviewItems = interviewItems.filter(x => x !== item);
+      }
+    })
+    
+
+    if(rejectCounter === 0) rejectItems.push(currentDiv)
+    else rejectCounter = 0;
+
+    // Interview Section Update
+    sectionRender();
     totalRender();
   }
   
 })
+
+function sectionRender() {
+    // Rendering Interview section 
+    interviewSection.innerHTML = '';
+
+    interviewItems.forEach(item => {
+      const newElem = document.createElement('div');
+      newElem.classList.add('main-card', 'bg-secondary-bg', 'border-2', 'border-bg-border', 'rounded-lg', 'space-y-5', 'p-4', 'md:p-6')
+      newElem.innerHTML = `
+      <div class="flex justify-between items-center">
+            <div>
+              <h2 class="company-name text-primary-text text-[18px] font-semibold" >${item.companyName}</h2>
+              <p class="post-name text-gray-text">${item.postName}</p>
+            </div>
+            <button class="rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
+              <img width="36px" src="icons/bin-icon.png" alt="Delet icon">
+            </button>
+          </div>
+
+          <p class="job-type text-gray-text text-[14px]">${item.jobType}</p>
+
+          <div class="space-y-2">
+            <div class="aplly-btn interviewCard border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="current-status uppercase font-medium text-[14px]">Interview</p>
+            </div>
+            <p class="work-details text-[14px] text-darkGray-text ">${item.workDetails}</p>
+          </div>
+
+          <div class="space-x-2">
+            <button class="interview-btn btn border-green-btn text-green-btn bg-secondary-bg hover:bg-green-btn hover:text-secondary-bg active:scale-98 uppercase">interview</button>
+            <button class="rejected-btn btn border-red-btn text-red-btn bg-secondary-bg hover:bg-red-btn hover:text-secondary-bg active:scale-98 uppercase">Rejected</button>
+          </div>
+      `
+      interviewSection.appendChild(newElem);
+  })
+
+    rejectSection.innerHTML = '';
+
+    rejectItems.forEach(item => {
+      const newElem = document.createElement('div');
+      newElem.classList.add('main-card', 'bg-secondary-bg', 'border-2', 'border-bg-border', 'rounded-lg', 'space-y-5', 'p-4', 'md:p-6')
+      newElem.innerHTML = `
+      <div class="flex justify-between items-center">
+            <div>
+              <h2 class="company-name text-primary-text text-[18px] font-semibold" >${item.companyName}</h2>
+              <p class="post-name text-gray-text">${item.postName}</p>
+            </div>
+            <button class="rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
+              <img width="36px" src="icons/bin-icon.png" alt="Delet icon">
+            </button>
+          </div>
+
+          <p class="job-type text-gray-text text-[14px]">${item.jobType}</p>
+
+          <div class="space-y-2">
+            <div class="aplly-btn rejectCard border-transparent text-primary-text bg-disabled-btn w-max px-3 py-2 rounded">
+              <p class="current-status uppercase font-medium text-[14px]">rejected</p>
+            </div>
+            <p class="work-details text-[14px] text-darkGray-text ">${item.workDetails}</p>
+          </div>
+
+          <div class="space-x-2">
+            <button class="interview-btn btn border-green-btn text-green-btn bg-secondary-bg hover:bg-green-btn hover:text-secondary-bg active:scale-98 uppercase">interview</button>
+            <button class="rejected-btn btn border-red-btn text-red-btn bg-secondary-bg hover:bg-red-btn hover:text-secondary-bg active:scale-98 uppercase">Rejected</button>
+          </div>
+      `
+      rejectSection.appendChild(newElem);
+  })
+
+  }
 
 // Main counters
 const totalJob = document.getElementById('total-job');
