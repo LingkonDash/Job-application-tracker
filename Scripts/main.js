@@ -5,6 +5,7 @@ let rejectItems = [];
 const allSection = document.getElementById('all-section');
 const interviewSection = document.getElementById('interview-section');
 const rejectSection = document.getElementById('reject-section');
+const noJobSection = document.getElementById('noJob-section');
 
 const mainContainer = document.getElementById('main-container');
 
@@ -52,6 +53,11 @@ mainContainer.addEventListener('click', (e) => {
     else counter = 0;
     
     // Interview Section Update
+    if(rejectItems.length === 0) {
+      document.getElementById('reject-section').classList.add('hidden');
+      document.getElementById('noJob-section').classList.remove('hidden');
+    }
+
     sectionRender();
     totalRender();
   } 
@@ -84,7 +90,11 @@ mainContainer.addEventListener('click', (e) => {
     if(rejectCounter === 0) rejectItems.push(currentDiv)
     else rejectCounter = 0;
 
-    // Interview Section Update
+    // Reject Section Update
+    if(interviewItems.length === 0) {
+      document.getElementById('reject-section').classList.add('hidden');
+      document.getElementById('noJob-section').classList.remove('hidden');
+    }
     sectionRender();
     totalRender();
   }
