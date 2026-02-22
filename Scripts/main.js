@@ -1,3 +1,11 @@
+// Main counters
+const totalJob = document.getElementById('total-job');
+const interviewJOb = document.getElementById('interview-job');
+const rejectJob = document.getElementById('reject-job');
+const jobs = document.getElementById('jobs');
+
+jobs.innerText = document.getElementById('all-section').children.length;
+
 let interviewItems = [];
 let rejectItems = [];
 
@@ -60,6 +68,7 @@ mainContainer.addEventListener('click', (e) => {
 
     sectionRender();
     totalRender();
+    jobOfUpdater()
   } 
   
   if (e.target.classList.contains('rejected-btn')) {
@@ -95,8 +104,14 @@ mainContainer.addEventListener('click', (e) => {
       document.getElementById('reject-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
+    if(interviewItems.length === 0 && document.getElementById('interview-list').classList.contains('btn-primary')) {
+      document.getElementById('reject-section').classList.add('hidden');
+      document.getElementById('noJob-section').classList.remove('hidden');
+    }
+
     sectionRender();
     totalRender();
+    jobOfUpdater()
   }
   
 })
@@ -171,11 +186,6 @@ function sectionRender() {
 
   }
 
-// Main counters
-const totalJob = document.getElementById('total-job');
-const interviewJOb = document.getElementById('interview-job');
-const rejectJob = document.getElementById('reject-job');
-
 // This function updates data inside Counters
 function totalRender() {
   totalJob.innerText = document.getElementById('all-section').children.length;
@@ -186,8 +196,25 @@ function totalRender() {
 }
 totalRender();
 
+// tis function updates job oj counter
+function jobOfUpdater() {    
+    if(document.getElementById('interview-list').classList.contains('btn-primary')) jobs.innerText = `${document.getElementById('interview-section').children.length} of ${document.getElementById('all-section').children.length}`
+  
+    if(document.getElementById('reject-list').classList.contains('btn-primary')) jobs.innerText = `${document.getElementById('reject-section').children.length} of ${document.getElementById('all-section').children.length}`
+   
+    if(document.getElementById('all-list').classList.contains('btn-primary')) jobs.innerText = document.getElementById('all-section').children.length;
+}
+
 // This Function toggoles button styles and shows selected section
 function showOnly(btnid, sectionId) {
+
+    if(btnid === 'interview-list') jobs.innerText = `${document.getElementById('interview-section').children.length} of ${document.getElementById('all-section').children.length}`
+  
+    if(btnid === 'reject-list') jobs.innerText = `${document.getElementById('reject-section').children.length} of ${document.getElementById('all-section').children.length}`
+   
+    if(btnid === 'all-list') jobs.innerText = document.getElementById('all-section').children.length;
+
+
   // buttons
   document.getElementById('all-list').classList.remove('btn-primary')
   document.getElementById('interview-list').classList.remove('btn-primary')
@@ -209,6 +236,6 @@ function showOnly(btnid, sectionId) {
   }
   
   document.getElementById(sectionId).classList.remove('hidden')
-  
+
 }
 
