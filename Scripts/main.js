@@ -53,7 +53,7 @@ mainContainer.addEventListener('click', (e) => {
     else counter = 0;
     
     // Interview Section Update
-    if(rejectItems.length === 0) {
+    if(rejectItems.length === 0 && document.getElementById('reject-list').classList.contains('btn-primary') ) {
       document.getElementById('reject-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
@@ -91,7 +91,7 @@ mainContainer.addEventListener('click', (e) => {
     else rejectCounter = 0;
 
     // Reject Section Update
-    if(interviewItems.length === 0) {
+    if(interviewItems.length === 0 && document.getElementById('interview-list').classList.contains('btn-primary')) {
       document.getElementById('reject-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
