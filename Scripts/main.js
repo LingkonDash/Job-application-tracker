@@ -1,29 +1,49 @@
-const totalJob = document.getElementById('total-job');
-const interviewJOb = document.getElementById('interview-job');
-const rejectJob = document.getElementById('reject-job');
+// main Sections capturing with variables
+const allSection = document.getElementById('all-section');
+const interviewSection = document.getElementById('interview-section');
+const rejectSection = document.getElementById('reject-section');
 
 const mainContainer = document.getElementById('main-container');
 
 mainContainer.addEventListener('click', (e) => {
-  
-  if (e.target.innerText === 'INTERVIEW') {
-    e.target.closest('.main-card').querySelector('.aplly-btn').classList.remove('rejectCard')
-    e.target.closest('.main-card').querySelector('.aplly-btn').classList.add('interviewCard')
-    e.target.closest('.main-card').querySelector('.aplly-btn p').innerText = 'interview'
+  const mainParent = e.target.closest('.main-card')
+
+  if (e.target.classList.contains('interview-btn')) {
+
+    // status changing 
+    mainParent.querySelector('.aplly-btn').classList.remove('rejectCard')
+    mainParent.querySelector('.aplly-btn').classList.add('interviewCard')
+    mainParent.querySelector('.aplly-btn p').innerText = 'interview'  
+    
+    // Interview Section Update
+
+    
+    totalRender();
   } 
   
-  if (e.target.innerText === 'REJECTED') {
-    e.target.closest('.main-card').querySelector('.aplly-btn').classList.remove('interviewCard')
-    e.target.closest('.main-card').querySelector('.aplly-btn').classList.add('rejectCard')
-    e.target.closest('.main-card').querySelector('.aplly-btn p').innerText = 'rejected'
+  if (e.target.classList.contains('rejected-btn')) {
+
+    mainParent.querySelector('.aplly-btn').classList.remove('interviewCard')
+    mainParent.querySelector('.aplly-btn').classList.add('rejectCard')
+    mainParent.querySelector('.aplly-btn p').innerText = 'rejected'
+
+    totalRender();
   }
+  
 })
 
-// This function updates data inside total box, interview box and reject box
+// Main counters
+const totalJob = document.getElementById('total-job');
+const interviewJOb = document.getElementById('interview-job');
+const rejectJob = document.getElementById('reject-job');
+
+// This function updates data inside Counters
 function totalRender() {
   totalJob.innerText = document.getElementById('all-section').children.length;
   interviewJOb.innerText = document.getElementById('interview-section').children.length;
   rejectJob.innerText = document.getElementById('reject-section').children.length;
+
+  // document.getElementById('jobs').innerText = document.getElementById('all-section').children.length;
 }
 totalRender();
 
