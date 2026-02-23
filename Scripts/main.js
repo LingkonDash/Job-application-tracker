@@ -51,7 +51,18 @@ mainContainer.addEventListener('click', (e) => {
 
     rejectItems.forEach(item => {
       if(item.companyName === checkText) {
-        rejectItems = rejectItems.filter(x => x !== item);
+        
+        // Interview Data status update in all section
+        allSection.querySelectorAll('.main-card').forEach(mainItem => {
+          if(mainItem.querySelector('.company-name').innerText === item.companyName) {
+            mainItem.querySelector('.aplly-btn').classList.remove('rejectCard')
+            mainItem.querySelector('.aplly-btn').classList.add('interviewCard')
+            mainItem.querySelector('.aplly-btn p').innerText = 'interview'
+          }
+          
+          rejectItems = rejectItems.filter(x => x !== item);
+        })
+        
       }
     })
     
@@ -65,6 +76,7 @@ mainContainer.addEventListener('click', (e) => {
       document.getElementById('reject-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
+    
 
     sectionRender();
     totalRender();
@@ -91,7 +103,17 @@ mainContainer.addEventListener('click', (e) => {
 
     interviewItems.forEach(item => {
       if(item.companyName === checkText) {
-        interviewItems = interviewItems.filter(x => x !== item);
+
+        // Reject Data status update in all section
+          allSection.querySelectorAll('.main-card').forEach(mainItem => {
+          if(mainItem.querySelector('.company-name').innerText === item.companyName) {
+            mainItem.querySelector('.aplly-btn').classList.remove('interviewCard')
+            mainItem.querySelector('.aplly-btn').classList.add('rejectCard')
+            mainItem.querySelector('.aplly-btn p').innerText = 'rejected'
+          }
+          
+          interviewItems = interviewItems.filter(x => x !== item);
+        })
       }
     })
     
@@ -111,7 +133,7 @@ mainContainer.addEventListener('click', (e) => {
 
     sectionRender();
     totalRender();
-    jobOfUpdater()
+    jobOfUpdater();
   }
   
 })
@@ -196,7 +218,7 @@ function totalRender() {
 }
 totalRender();
 
-// tis function updates job oj counter
+// this function updates job of counter
 function jobOfUpdater() {    
     if(document.getElementById('interview-list').classList.contains('btn-primary')) jobs.innerText = `${document.getElementById('interview-section').children.length} of ${document.getElementById('all-section').children.length}`
   
