@@ -142,7 +142,29 @@ mainContainer.addEventListener('click', (e) => {
   
 
   if(e.target.parentNode.classList.contains('delet-btn')) {
-    console.log('delet button clicked');
+
+    if(mainParent.parentNode.classList.contains('all-section')) {
+
+      allSection.removeChild(mainParent);
+    } else if(mainParent.parentNode.classList.contains('interview-section')) {
+
+      console.log('interview section delet clicked');
+      
+    } else if(mainParent.parentNode.classList.contains('reject-section')) {
+      
+      console.log('reject er section delet clicked');
+      
+    }
+    
+
+    if(allSection.children.length === 0 && document.getElementById('all-list').classList.contains('btn-primary') ) {
+      document.getElementById('all-section').classList.add('hidden');
+      document.getElementById('noJob-section').classList.remove('hidden');
+    }
+
+    sectionRender();
+    totalRender();
+    jobOfUpdater();
   }
   
 })
