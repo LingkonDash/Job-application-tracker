@@ -79,7 +79,7 @@ mainContainer.addEventListener('click', (e) => {
       document.getElementById('reject-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
-    
+
 
     sectionRender();
     totalRender();
@@ -140,29 +140,24 @@ mainContainer.addEventListener('click', (e) => {
     jobOfUpdater();
   }
   
-
+// Delet button 
   if(e.target.parentNode.classList.contains('delet-btn')) {
 
     if(mainParent.parentNode.classList.contains('all-section')) {
 
       allSection.removeChild(mainParent);
-    } else if(mainParent.parentNode.classList.contains('interview-section')) {
+    } 
 
-      console.log('interview section delet clicked');
-      
-    } else if(mainParent.parentNode.classList.contains('reject-section')) {
-      
-      console.log('reject er section delet clicked');
-      
+    if(allSection.children.length === 0) {
+      rejectSection.innerHTML = ''
+      interviewSection.innerHTML = ''
     }
-    
 
     if(allSection.children.length === 0 && document.getElementById('all-list').classList.contains('btn-primary') ) {
       document.getElementById('all-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
 
-    sectionRender();
     totalRender();
     jobOfUpdater();
   }
@@ -182,7 +177,7 @@ function sectionRender() {
               <h2 class="company-name text-primary-text text-[18px] font-semibold" >${item.companyName}</h2>
               <p class="post-name text-gray-text">${item.postName}</p>
             </div>
-            <button class="delet-btn rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
+            <button class="hidden rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
               <img width="36px" src="icons/bin-icon.png" alt="Delet icon">
             </button>
           </div>
@@ -215,7 +210,7 @@ function sectionRender() {
               <h2 class="company-name text-primary-text text-[18px] font-semibold" >${item.companyName}</h2>
               <p class="post-name text-gray-text">${item.postName}</p>
             </div>
-            <button class="delet-btn rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
+            <button class="hidden rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
               <img width="36px" src="icons/bin-icon.png" alt="Delet icon">
             </button>
           </div>
