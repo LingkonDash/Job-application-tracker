@@ -18,7 +18,9 @@ const noJobSection = document.getElementById('noJob-section');
 const mainContainer = document.getElementById('main-container');
 
 mainContainer.addEventListener('click', (e) => {
-  const mainParent = e.target.closest('.main-card')
+  const mainParent = e.target.closest('.main-card');
+
+  if(!mainParent) return;
 
   // Object items 
   const companyName = mainParent.querySelector('.company-name').innerText;
@@ -30,6 +32,7 @@ mainContainer.addEventListener('click', (e) => {
     companyName, postName, jobType, workDetails
   }
 
+  // interview button functionalities
   if (e.target.classList.contains('interview-btn')) {
 
     // status changing 
@@ -82,7 +85,8 @@ mainContainer.addEventListener('click', (e) => {
     totalRender();
     jobOfUpdater()
   } 
-  
+
+  // Reject button functionalities
   if (e.target.classList.contains('rejected-btn')) {
 
     // status changing 
@@ -136,6 +140,11 @@ mainContainer.addEventListener('click', (e) => {
     jobOfUpdater();
   }
   
+
+  if(e.target.parentNode.classList.contains('delet-btn')) {
+    console.log('delet button clicked');
+  }
+  
 })
 
 function sectionRender() {
@@ -151,7 +160,7 @@ function sectionRender() {
               <h2 class="company-name text-primary-text text-[18px] font-semibold" >${item.companyName}</h2>
               <p class="post-name text-gray-text">${item.postName}</p>
             </div>
-            <button class="rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
+            <button class="delet-btn rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
               <img width="36px" src="icons/bin-icon.png" alt="Delet icon">
             </button>
           </div>
@@ -184,7 +193,7 @@ function sectionRender() {
               <h2 class="company-name text-primary-text text-[18px] font-semibold" >${item.companyName}</h2>
               <p class="post-name text-gray-text">${item.postName}</p>
             </div>
-            <button class="rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
+            <button class="delet-btn rounded-full border cursor-pointer border-gray-text hover:bg-bg-border active:scale-95 transition-all">
               <img width="36px" src="icons/bin-icon.png" alt="Delet icon">
             </button>
           </div>
