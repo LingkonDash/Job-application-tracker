@@ -145,17 +145,35 @@ mainContainer.addEventListener('click', (e) => {
 
     if (mainParent.parentNode.classList.contains('all-section')) {
 
-      allSection.removeChild(mainParent);
-    }
+      // updating interview section 
+      interviewItems.forEach(item => {
+        if (item.companyName === currentDiv.companyName) {
+          interviewItems = interviewItems.filter(x => x !== item);
+        }
+      });
 
-    if (allSection.children.length === 0) {
-      rejectSection.innerHTML = ''
-      interviewSection.innerHTML = ''
+      // updating interview section reject section 
+      rejectItems.forEach(item => {
+        if (item.companyName === currentDiv.companyName) {
+          rejectItems = rejectItems.filter(x => x !== item);
+        }
+      });
+
+      allSection.removeChild(mainParent);
+
     }
+    
 
     if (allSection.children.length === 0 && document.getElementById('all-list').classList.contains('btn-primary')) {
       document.getElementById('all-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
+    }
+
+    sectionRender()
+
+    if (allSection.children.length === 0) {
+      rejectSection.innerHTML = ''
+      interviewSection.innerHTML = ''
     }
 
     totalRender();
