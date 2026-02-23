@@ -20,7 +20,7 @@ const mainContainer = document.getElementById('main-container');
 mainContainer.addEventListener('click', (e) => {
   const mainParent = e.target.closest('.main-card');
 
-  if(!mainParent) return;
+  if (!mainParent) return;
 
   // Object items 
   const companyName = mainParent.querySelector('.company-name').innerText;
@@ -38,44 +38,44 @@ mainContainer.addEventListener('click', (e) => {
     // status changing 
     mainParent.querySelector('.aplly-btn').classList.remove('rejectCard')
     mainParent.querySelector('.aplly-btn').classList.add('interviewCard')
-    mainParent.querySelector('.aplly-btn p').innerText = 'interview'  
-    
+    mainParent.querySelector('.aplly-btn p').innerText = 'interview'
+
     currentDiv.currentStatus = mainParent.querySelector('.current-status').innerText;
     // Interview item check 
     let counter = 0;
 
     interviewItems.forEach(item => {
-      if((item.companyName === currentDiv.companyName)){
+      if ((item.companyName === currentDiv.companyName)) {
         counter++
-      } 
+      }
     })
 
     const checkText = mainParent.querySelector('.company-name').innerText
 
     rejectItems.forEach(item => {
-      if(item.companyName === checkText) {
-        
+      if (item.companyName === checkText) {
+
         // Interview Data status update in all section
         allSection.querySelectorAll('.main-card').forEach(mainItem => {
-          if(mainItem.querySelector('.company-name').innerText === item.companyName) {
+          if (mainItem.querySelector('.company-name').innerText === item.companyName) {
             mainItem.querySelector('.aplly-btn').classList.remove('rejectCard')
             mainItem.querySelector('.aplly-btn').classList.add('interviewCard')
             mainItem.querySelector('.aplly-btn p').innerText = 'interview'
           }
-          
+
           rejectItems = rejectItems.filter(x => x !== item);
         })
-        
+
       }
     })
-    
 
-    if(counter === 0) interviewItems.push(currentDiv)
+
+    if (counter === 0) interviewItems.push(currentDiv)
 
     else counter = 0;
-    
+
     // Interview Section Update
-    if(rejectItems.length === 0 && document.getElementById('reject-list').classList.contains('btn-primary') ) {
+    if (rejectItems.length === 0 && document.getElementById('reject-list').classList.contains('btn-primary')) {
       document.getElementById('reject-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
@@ -84,7 +84,7 @@ mainContainer.addEventListener('click', (e) => {
     sectionRender();
     totalRender();
     jobOfUpdater()
-  } 
+  }
 
   // Reject button functionalities
   if (e.target.classList.contains('rejected-btn')) {
@@ -95,10 +95,10 @@ mainContainer.addEventListener('click', (e) => {
     mainParent.querySelector('.aplly-btn p').innerText = 'rejected'
 
     currentDiv.currentStatus = mainParent.querySelector('.current-status').innerText;
-     // Reject item check 
+    // Reject item check 
     let rejectCounter = 0;
     rejectItems.forEach(item => {
-      if((item.companyName === currentDiv.companyName)){
+      if ((item.companyName === currentDiv.companyName)) {
         rejectCounter++
       }
     })
@@ -106,31 +106,31 @@ mainContainer.addEventListener('click', (e) => {
     const checkText = mainParent.querySelector('.company-name').innerText
 
     interviewItems.forEach(item => {
-      if(item.companyName === checkText) {
+      if (item.companyName === checkText) {
 
         // Reject Data status update in all section
-          allSection.querySelectorAll('.main-card').forEach(mainItem => {
-          if(mainItem.querySelector('.company-name').innerText === item.companyName) {
+        allSection.querySelectorAll('.main-card').forEach(mainItem => {
+          if (mainItem.querySelector('.company-name').innerText === item.companyName) {
             mainItem.querySelector('.aplly-btn').classList.remove('interviewCard')
             mainItem.querySelector('.aplly-btn').classList.add('rejectCard')
             mainItem.querySelector('.aplly-btn p').innerText = 'rejected'
           }
-          
+
           interviewItems = interviewItems.filter(x => x !== item);
         })
       }
     })
-    
 
-    if(rejectCounter === 0) rejectItems.push(currentDiv)
+
+    if (rejectCounter === 0) rejectItems.push(currentDiv)
     else rejectCounter = 0;
 
     // Reject Section Update
-    if(interviewItems.length === 0 && document.getElementById('interview-list').classList.contains('btn-primary')) {
+    if (interviewItems.length === 0 && document.getElementById('interview-list').classList.contains('btn-primary')) {
       document.getElementById('reject-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
-    if(interviewItems.length === 0 && document.getElementById('interview-list').classList.contains('btn-primary')) {
+    if (interviewItems.length === 0 && document.getElementById('interview-list').classList.contains('btn-primary')) {
       document.getElementById('reject-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
@@ -139,21 +139,21 @@ mainContainer.addEventListener('click', (e) => {
     totalRender();
     jobOfUpdater();
   }
-  
-// Delet button 
-  if(e.target.parentNode.classList.contains('delet-btn')) {
 
-    if(mainParent.parentNode.classList.contains('all-section')) {
+  // Delet button 
+  if (e.target.parentNode.classList.contains('delet-btn')) {
+
+    if (mainParent.parentNode.classList.contains('all-section')) {
 
       allSection.removeChild(mainParent);
-    } 
+    }
 
-    if(allSection.children.length === 0) {
+    if (allSection.children.length === 0) {
       rejectSection.innerHTML = ''
       interviewSection.innerHTML = ''
     }
 
-    if(allSection.children.length === 0 && document.getElementById('all-list').classList.contains('btn-primary') ) {
+    if (allSection.children.length === 0 && document.getElementById('all-list').classList.contains('btn-primary')) {
       document.getElementById('all-section').classList.add('hidden');
       document.getElementById('noJob-section').classList.remove('hidden');
     }
@@ -161,17 +161,17 @@ mainContainer.addEventListener('click', (e) => {
     totalRender();
     jobOfUpdater();
   }
-  
+
 })
 
 function sectionRender() {
-    // Rendering Interview section 
-    interviewSection.innerHTML = '';
+  // Rendering Interview section 
+  interviewSection.innerHTML = '';
 
-    interviewItems.forEach(item => {
-      const newElem = document.createElement('div');
-      newElem.classList.add('main-card', 'bg-secondary-bg', 'border-2', 'border-bg-border', 'rounded-lg', 'space-y-5', 'p-4', 'md:p-6')
-      newElem.innerHTML = `
+  interviewItems.forEach(item => {
+    const newElem = document.createElement('div');
+    newElem.classList.add('main-card', 'bg-secondary-bg', 'border-2', 'border-bg-border', 'rounded-lg', 'space-y-5', 'p-4', 'md:p-6')
+    newElem.innerHTML = `
       <div class="flex justify-between items-center">
             <div>
               <h2 class="company-name text-primary-text text-[18px] font-semibold" >${item.companyName}</h2>
@@ -196,15 +196,15 @@ function sectionRender() {
             <button class="rejected-btn btn border-red-btn text-red-btn bg-secondary-bg hover:bg-red-btn hover:text-secondary-bg active:scale-98 uppercase">Rejected</button>
           </div>
       `
-      interviewSection.appendChild(newElem);
+    interviewSection.appendChild(newElem);
   })
 
-    rejectSection.innerHTML = '';
+  rejectSection.innerHTML = '';
 
-    rejectItems.forEach(item => {
-      const newElem = document.createElement('div');
-      newElem.classList.add('main-card', 'bg-secondary-bg', 'border-2', 'border-bg-border', 'rounded-lg', 'space-y-5', 'p-4', 'md:p-6')
-      newElem.innerHTML = `
+  rejectItems.forEach(item => {
+    const newElem = document.createElement('div');
+    newElem.classList.add('main-card', 'bg-secondary-bg', 'border-2', 'border-bg-border', 'rounded-lg', 'space-y-5', 'p-4', 'md:p-6')
+    newElem.innerHTML = `
       <div class="flex justify-between items-center">
             <div>
               <h2 class="company-name text-primary-text text-[18px] font-semibold" >${item.companyName}</h2>
@@ -229,10 +229,10 @@ function sectionRender() {
             <button class="rejected-btn btn border-red-btn text-red-btn bg-secondary-bg hover:bg-red-btn hover:text-secondary-bg active:scale-98 uppercase">Rejected</button>
           </div>
       `
-      rejectSection.appendChild(newElem);
+    rejectSection.appendChild(newElem);
   })
 
-  }
+}
 
 // This function updates data inside Counters
 function totalRender() {
@@ -245,44 +245,44 @@ function totalRender() {
 totalRender();
 
 // this function updates job of counter
-function jobOfUpdater() {    
-    if(document.getElementById('interview-list').classList.contains('btn-primary')) jobs.innerText = `${document.getElementById('interview-section').children.length} of ${document.getElementById('all-section').children.length}`
-  
-    if(document.getElementById('reject-list').classList.contains('btn-primary')) jobs.innerText = `${document.getElementById('reject-section').children.length} of ${document.getElementById('all-section').children.length}`
-   
-    if(document.getElementById('all-list').classList.contains('btn-primary')) jobs.innerText = document.getElementById('all-section').children.length;
+function jobOfUpdater() {
+  if (document.getElementById('interview-list').classList.contains('btn-primary')) jobs.innerText = `${document.getElementById('interview-section').children.length} of ${document.getElementById('all-section').children.length}`
+
+  if (document.getElementById('reject-list').classList.contains('btn-primary')) jobs.innerText = `${document.getElementById('reject-section').children.length} of ${document.getElementById('all-section').children.length}`
+
+  if (document.getElementById('all-list').classList.contains('btn-primary')) jobs.innerText = document.getElementById('all-section').children.length;
 }
 
 // This Function toggoles button styles and shows selected section
 function showOnly(btnid, sectionId) {
 
-    if(btnid === 'interview-list') jobs.innerText = `${document.getElementById('interview-section').children.length} of ${document.getElementById('all-section').children.length}`
-  
-    if(btnid === 'reject-list') jobs.innerText = `${document.getElementById('reject-section').children.length} of ${document.getElementById('all-section').children.length}`
-   
-    if(btnid === 'all-list') jobs.innerText = document.getElementById('all-section').children.length;
+  if (btnid === 'interview-list') jobs.innerText = `${document.getElementById('interview-section').children.length} of ${document.getElementById('all-section').children.length}`
+
+  if (btnid === 'reject-list') jobs.innerText = `${document.getElementById('reject-section').children.length} of ${document.getElementById('all-section').children.length}`
+
+  if (btnid === 'all-list') jobs.innerText = document.getElementById('all-section').children.length;
 
 
   // buttons
   document.getElementById('all-list').classList.remove('btn-primary')
   document.getElementById('interview-list').classList.remove('btn-primary')
   document.getElementById('reject-list').classList.remove('btn-primary')
-  
+
   document.getElementById(btnid).classList.add('btn-primary')
-  
+
   // Sections
   document.getElementById('all-section').classList.add('hidden')
   document.getElementById('interview-section').classList.add('hidden')
   document.getElementById('reject-section').classList.add('hidden')
   document.getElementById('noJob-section').classList.add('hidden')
-  
+
   const currentSection = document.getElementById(sectionId);
-  
+
   if (currentSection.children.length === 0) {
     document.getElementById('noJob-section').classList.remove('hidden')
     return;
   }
-  
+
   document.getElementById(sectionId).classList.remove('hidden')
 
 }
